@@ -150,10 +150,6 @@ resource "aws_s3_bucket" "lambda" {
     enabled = false
   }
 
-  logging {
-    target_bucket = aws_s3_bucket.s3_server_access_log.id
-    target_prefix = "S3logs/lambda-${var.env}.spire.io/"
-  }
 
   lifecycle_rule {
     abort_incomplete_multipart_upload_days = 7
