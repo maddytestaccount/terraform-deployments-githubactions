@@ -39,7 +39,7 @@ jobs:
   #         tf_actions_comment: true           
   terraform:
     name: "Terraform"
-    # needs: terraform-sandbox
+    needs: terraform-sandbox
     runs-on: ubuntu-latest
     env:	
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
@@ -99,45 +99,52 @@ jobs:
         run: |
           chmod +x ./bin/deploy.sh
           ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o apply -a                  
-  # terraform-sandbox:
-  #   name: "sandbox-Terraform"
+  terraform-sandbox:
+    name: "sandbox-Terraform"
 
-  #   runs-on: ubuntu-latest
-  #   env:	
-  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
-  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRETE_ID }}
-  #     AWS_REGION: 'ap-south-1'
-  #     TERRAFORM_ENVIRONMENT: sandbox
+    runs-on: ubuntu-latest
+    env:	
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRETE_ID }}
+      AWS_REGION: 'us-east-2'
+      TERRAFORM_ENVIRONMENT: sandbox
 
-  #   steps:
-  #     - name: 'Checkout'
-  #       uses: actions/checkout@master
-  #     - name: 'Terraform Init'
-  #       uses: hashicorp/terraform-github-actions@master
-  #       with:
-  #         tf_actions_version: 1.0.11
-  #         tf_actions_subcommand: 'init'
-  #         tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
-  #         tf_actions_comment: true
-  #     - name: 'Terraform plan'
-  #       uses: hashicorp/terraform-github-actions@master
-  #       with:
-  #         tf_actions_version: 1.0.11
-  #         tf_actions_subcommand: 'plan'
-  #         tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
-  #         tf_actions_comment: true    
-  #     - name: set env
-  #       run: |
-  #         chmod +x ./bin/deploy.sh
-  #         ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o apply -a                 
-  #     - name: 'Terraform apply'
-  #       uses: hashicorp/terraform-github-actions@master
-  #       with:
-  #         tf_actions_version: 1.0.11
-  #         tf_actions_subcommand: 'apply'
-  #         tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
-  #         tf_actions_comment: true           
-  #     - name: set env
-  #       run: |
-  #         chmod +x ./bin/deploy.sh
-  #         ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o apply -a          
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: 'Terraform Init'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 1.0.11
+          tf_actions_subcommand: 'init'
+          tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
+          tf_actions_comment: true
+      - name: "Hello world when it's Monday"
+        # if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
+        run: |
+          cd environments/production
+          terraform init          
+      - name: 'Terraform plan'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 1.0.11
+          tf_actions_subcommand: 'plan'
+          tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
+          tf_actions_comment: true    
+      - name: "Hello world when it's Monday"
+        # if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
+        run: | 
+          chmod +x ./bin/deploy.sh
+          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o plan                
+      - name: 'Terraform apply'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 1.0.11
+          tf_actions_subcommand: 'apply'
+          tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
+          tf_actions_comment: true           
+      - name: "Hello world when it's Monday"
+        # if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
+        run: |
+          chmod +x ./bin/deploy.sh
+          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o apply -a          
