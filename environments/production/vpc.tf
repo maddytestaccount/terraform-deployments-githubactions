@@ -1,6 +1,13 @@
 #
 # Defines VPC, subnets, security groups, NAT instance, etc.
 #
+data "aws_iam_policy_document" "GitHubActions" {
+  statement {
+    actions   = ["*"]
+    resources = ["*"]
+    effect    = "Allow"
+  }
+}
 
 # VPC
 provider "aws" {
