@@ -50,8 +50,7 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@master
-      # - name: set-env
-      #   run: echo "tf_actions_working_dir=$(echo $tf_actions_working_dir | cut -c 1-6)" >> $GITHUB_ENV        
+        
       - name: 'Terraform Init'
         uses: hashicorp/terraform-github-actions@master
         with:
