@@ -1,5 +1,5 @@
 variable "env" {
-  default = "undefined"
+  default = "production"
 }
 
 variable "region" {
