@@ -67,6 +67,11 @@ jobs:
 
       - name: 'Terraform plan'
         uses: hashicorp/terraform-github-actions@master
+      - name: "Hello world when it's Monday"
+        if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
+        run: | 
+          chmod +x ./bin/deploy.sh
+          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o plan        
 
         with:
           tf_actions_version: 1.0.11
@@ -77,27 +82,21 @@ jobs:
       #   run: |
       #     chmod +x ./bin/deploy.sh
       #     ./bin/deploy.sh -e $tf_actions_working_dir -o plan  
-      # - name: "Hello world when it's Monday"
-      #   if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
-      #   run: | 
-      #     chmod +x ./bin/deploy.sh
-      #     ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o plan                         
+                         
       - name: 'Terraform apply'
         uses: hashicorp/terraform-github-actions@master
+      - name: "Hello world when it's Monday"
+        if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
+        run: |
+          chmod +x ./bin/deploy.sh
+          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o apply -a        
         with:
           tf_actions_version: 1.0.11
           tf_actions_subcommand: 'apply'
           tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
           tf_actions_comment: true       
-      # - name: set env
-      #   run: |
-      #     chmod +x ./bin/deploy.sh
-      #     ./bin/deploy.sh -e $tf_actions_working_dir -o apply -a     
-      - name: "Hello world when it's Monday"
-        if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
-        run: |
-          chmod +x ./bin/deploy.sh
-          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o apply -a                  
+     
+                  
   # terraform-sandbox:
   #   name: "sandbox-Terraform"
 
