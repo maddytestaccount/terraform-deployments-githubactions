@@ -66,30 +66,30 @@ jobs:
           terraform init
    
 
-      # - name: 'Terraform plan'
-      #   uses: hashicorp/terraform-github-actions@master
+      - name: 'Terraform plan'
+        uses: hashicorp/terraform-github-actions@master
 
-      #   with:
-      #     tf_actions_version: 1.0.11
-      #     tf_actions_subcommand: 'plan'
-      #     tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
-      #     tf_actions_comment: true  
+        with:
+          tf_actions_version: 1.0.11
+          tf_actions_subcommand: 'plan'
+          tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
+          tf_actions_comment: true  
       # - name: set env
       #   run: |
       #     chmod +x ./bin/deploy.sh
       #     ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o plan  
-      # # - name: "Hello world when it's Monday"
-      # #   if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
-      # #   run: | 
-      # #     chmod +x ./bin/deploy.sh
-      # #     ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o plan                         
-      # - name: 'Terraform apply'
-      #   uses: hashicorp/terraform-github-actions@master
-      #   with:
-      #     tf_actions_version: 1.0.11
-      #     tf_actions_subcommand: 'apply'
-      #     tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
-      #     tf_actions_comment: true       
+      # - name: "Hello world when it's Monday"
+      #   if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
+      #   run: | 
+      #     chmod +x ./bin/deploy.sh
+      #     ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o plan                         
+      - name: 'Terraform apply'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 1.0.11
+          tf_actions_subcommand: 'apply'
+          tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
+          tf_actions_comment: true       
       # - name: set env
       #   run: |
       #     chmod +x ./bin/deploy.sh
