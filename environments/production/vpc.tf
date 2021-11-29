@@ -141,7 +141,7 @@ resource "aws_main_route_table_association" "main" {
 
 resource "aws_s3_bucket" "lambda" {
   bucket = "lambda-${var.env}.spire.io"
-  region = var.region
+  # region = var.region
   tags = {
     Environment = var.env
   }
