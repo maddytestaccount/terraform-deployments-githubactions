@@ -139,3 +139,33 @@ resource "aws_main_route_table_association" "main" {
   route_table_id = aws_route_table.main.id
 }
 
+resource "aws_s3_bucket" "lambda" {
+  bucket = "lambda-${var.env}.spire.io"
+  region = var.region
+  tags = {
+    Environment = var.env
+  }
+
+  versioning {
+    enabled = false
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.s3_server_access_log.id
+    target_prefix = "S3logs/lambda-${var.env}.spire.io/"
+  }
+
+  lifecycle_rule {
+    abort_incomplete_multipart_upload_days = 7
+    id                                     = "delete_failed_multipart_uploads"
+    enabled                                = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+}
