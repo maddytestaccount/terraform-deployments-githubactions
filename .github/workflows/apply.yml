@@ -39,7 +39,7 @@ jobs:
   #         tf_actions_comment: true           
   terraform:
     name: "Terraform"
-    needs: terraform-sandbox
+    # needs: terraform-sandbox
     runs-on: ubuntu-latest
     env:	
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
