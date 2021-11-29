@@ -120,7 +120,7 @@ jobs:
           tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
           tf_actions_comment: true
       - name: "Hello world when it's Monday"
-        if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
+        if: ${{ env.TERRAFORM_ENVIRONMENT == 'sandbox' }}
         run: |
           cd environments/production
           terraform init          
@@ -132,7 +132,7 @@ jobs:
           tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
           tf_actions_comment: true    
       - name: "Hello world when it's Monday"
-        if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
+        if: ${{ env.TERRAFORM_ENVIRONMENT == 'sandbox' }}
         run: | 
           chmod +x ./bin/deploy.sh
           ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o plan                
@@ -144,7 +144,7 @@ jobs:
           tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
           tf_actions_comment: true           
       - name: "Hello world when it's Monday"
-        if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
+        if: ${{ env.TERRAFORM_ENVIRONMENT == 'sandbox' }}
         run: |
           chmod +x ./bin/deploy.sh
           ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o apply -a          
