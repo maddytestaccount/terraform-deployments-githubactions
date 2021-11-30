@@ -56,10 +56,10 @@ jobs:
         with:
           tf_actions_version: 0.12.13
           tf_actions_subcommand: 'init'
-          tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
+          tf_actions_working_dir: './environments/production'
           tf_actions_comment: true
       - name: "Hello world when it's Monday"
-        if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
+        # if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
         run: |
           cd environments/production
           terraform init
@@ -71,14 +71,14 @@ jobs:
         with:
           tf_actions_version: 0.12.13
           tf_actions_subcommand: 'plan'
-          tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
+          tf_actions_working_dir: './environments/production'
           tf_actions_comment: true  
       # - name: set env
       #   run: |
       #     chmod +x ./bin/deploy.sh
       #     ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o plan  
       - name: "Hello world when it's Monday"
-        if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
+        # if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
         run: | 
           chmod +x ./bin/deploy.sh
           ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY -o plan                         
@@ -94,7 +94,7 @@ jobs:
       #     chmod +x ./bin/deploy.sh
       #     ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o apply -a     
       - name: "Hello world when it's Monday"
-        if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
+        # if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
         run: |
           chmod +x ./bin/deploy.sh
           ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY  -o apply -a                  

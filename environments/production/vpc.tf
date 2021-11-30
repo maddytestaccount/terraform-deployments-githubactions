@@ -4,11 +4,11 @@
 
 
 # VPC
-provider "aws" {
-  region     = "us-east-2"
-  access_key = "AKIAXDSL7DJC5HN775LW"
-  secret_key = "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"
-}
+# provider "aws" {
+#   region     = "us-east-2"
+#   access_key = "AKIAXDSL7DJC5HN775LW"
+#   secret_key = "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"
+# }
 resource "aws_vpc" "default" {
   cidr_block           = var.vpc_cidr
   enable_dns_hostnames = true
