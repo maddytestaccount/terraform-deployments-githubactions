@@ -127,7 +127,7 @@ update_shared_json() {
     output=$(terraform output -json)
     echo "$output" >shared.json
 
-    aws s3 cp shared.json "s3://lambda-$ENV.spire.io/shared.json"
+    aws s3 cp shared.json "s3://lambda1-$ENV.spire.io/shared.json"
   fi
 }
 
