@@ -109,7 +109,6 @@ jobs:
           tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
           tf_actions_comment: true
       - name: "tf_output"
-        if: ${{ env.TERRAFORM_ENVIRONMENT == 'sandbox' }}
         run: |
           cd ./environments/production
           terraform init          
@@ -123,7 +122,7 @@ jobs:
       - name: "tf_output_plan"
         run: | 
           chmod +x ./bin/deploy.sh
-          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o plan                
+          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY -o plan                
       - name: 'Terraform apply'
         uses: hashicorp/terraform-github-actions@master
         with:
@@ -134,4 +133,4 @@ jobs:
       - name: "tf_output_apply"
         run: |
           chmod +x ./bin/deploy.sh
-          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o apply -a          
+          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY  -o apply -a          
