@@ -71,7 +71,7 @@ jobs:
         with:
           tf_actions_version: 0.12.13
           tf_actions_subcommand: 'plan'
-          tf_actions_working_dir: './environments/production'
+          tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
           tf_actions_comment: true  
       # - name: set env
       #   run: |
