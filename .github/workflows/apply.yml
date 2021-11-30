@@ -110,7 +110,7 @@ jobs:
           tf_actions_comment: true
       - name: "tf_output"
         run: |
-          cd ./environments/production
+          cd ./environments/sandbox
           terraform init          
       - name: 'Terraform plan'
         uses: hashicorp/terraform-github-actions@master
