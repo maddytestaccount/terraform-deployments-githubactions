@@ -81,7 +81,7 @@ jobs:
         if: ${{ env.TERRAFORM_ENVIRONMENT == 'production' }}
         run: | 
           chmod +x ./bin/deploy.sh
-          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT -o plan                         
+          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY -o plan                         
       - name: 'Terraform apply'
         uses: hashicorp/terraform-github-actions@master
         with:
