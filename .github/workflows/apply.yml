@@ -76,7 +76,7 @@ jobs:
       - name: "tf_output_plan"
         run: | 
           chmod +x ./bin/deploy.sh
-          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY -o plan                         
+          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT  -o plan                         
       - name: 'Terraform apply'
         uses: hashicorp/terraform-github-actions@master
         with:
@@ -87,7 +87,7 @@ jobs:
       - name: "Hello world when it's Monday"
         run: |
           chmod +x ./bin/deploy.sh
-          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY  -o apply -a                  
+          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT  -o apply -a                  
   terraform-sandbox:
     name: "sandbox-Terraform"
 
@@ -122,7 +122,7 @@ jobs:
       - name: "tf_output_plan"
         run: | 
           chmod +x ./bin/deploy.sh
-          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY -o plan                
+          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT  -o plan                
       - name: 'Terraform apply'
         uses: hashicorp/terraform-github-actions@master
         with:
@@ -133,4 +133,4 @@ jobs:
       - name: "tf_output_apply"
         run: |
           chmod +x ./bin/deploy.sh
-          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY  -o apply -a          
+          ./bin/deploy.sh -e $TERRAFORM_ENVIRONMENT   -o apply -a          
