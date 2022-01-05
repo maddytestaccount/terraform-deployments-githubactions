@@ -46,6 +46,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRETE_ID }}
       AWS_REGION: 'us-east-1'
       TERRAFORM_ENVIRONMENT: sandbox
+      TERRAFORM_VERSION: 0.12.13
 
     steps:
       - name: 'Checkout'
@@ -53,14 +54,14 @@ jobs:
       - name: 'Terraform Init'
         uses: hashicorp/terraform-github-actions@master
         with:
-          tf_actions_version: 0.12.13
+          tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
           tf_actions_comment: true          
       - name: 'Terraform plan'
         uses: hashicorp/terraform-github-actions@master
         with:
-          tf_actions_version: 0.12.13
+          tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_subcommand: 'plan'
           tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
           tf_actions_comment: true                     
@@ -84,7 +85,7 @@ jobs:
       - name: 'Terraform Init'
         uses: hashicorp/terraform-github-actions@master
         with:
-          tf_actions_version: 0.12.13
+          tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
           tf_actions_comment: true            
@@ -92,7 +93,7 @@ jobs:
       - name: 'Terraform apply'
         uses: hashicorp/terraform-github-actions@master
         with:
-          tf_actions_version: 0.12.13
+          tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_subcommand: 'apply'
           tf_actions_working_dir: './environments/$TERRAFORM_ENVIRONMENT'
           tf_actions_comment: true           
