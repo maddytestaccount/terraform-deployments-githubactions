@@ -15,7 +15,7 @@ resource "aws_vpc" "default" {
 
   tags = {
     Environment = var.env
-    Name        = "spire-vpc-${var.env}"
+    Name        = "spire-vpctest-${var.env}"
     Provisoning = "terraform"
   }
 }
