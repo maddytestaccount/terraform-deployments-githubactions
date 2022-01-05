@@ -40,6 +40,9 @@ jobs:
                  
   terraform-sandbox:
     name: "sandbox-Terraform"
+    environment:
+      name: sandbox
+      url: https://github.com/maddytestaccount/terraform-deployments-githubactions.git
 
     runs-on: ubuntu-latest
     env:	
