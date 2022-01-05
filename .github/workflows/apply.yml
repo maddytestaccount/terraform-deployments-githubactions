@@ -42,7 +42,6 @@ jobs:
     name: "sandbox-Terraform"
     environment:
         name: sandbox
-        url: ${{ steps.deploy_sandbox.outputs.webapp-url }}    
 
     runs-on: ubuntu-latest
     env:	
