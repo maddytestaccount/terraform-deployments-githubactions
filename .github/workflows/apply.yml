@@ -40,8 +40,6 @@ jobs:
                  
   terraform-sandbox:
     name: "sandbox-Terraform"
-    environment:
-        name: sandbox
 
     runs-on: ubuntu-latest
     env:	
